@@ -1,4 +1,4 @@
-package com.example.petshop
+package com.example.petshop.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
