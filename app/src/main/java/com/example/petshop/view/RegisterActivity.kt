@@ -43,6 +43,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.example.petshop.model.UserModule
 import com.example.petshop.repository.UserRepositoryImpl
@@ -62,74 +63,78 @@ class RegisterActivity : ComponentActivity() {
 
 @Composable
 fun RegBody(innerPaddingValues: PaddingValues) {
-
     val repo = remember { UserRepositoryImpl() }
     val userViewModel = remember { UserViewModel(repo) }
 
     val context = LocalContext.current
     val activity = context as? Activity
 
-
     var firstName by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var lastname by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
-
-    var selectedOptionText by remember { mutableStateOf("Select Option") }
+    var selectedOptionText by remember { mutableStateOf("Select Country") }
 
     val options = listOf("Nepal", "India", "China")
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
 
-    var textFieldSize by remember { mutableStateOf(Size.Zero) } // to capture textfield size
     Column(
         modifier = Modifier
             .padding(innerPaddingValues)
-            .padding(horizontal = 10.dp)
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(Color(0xFFF8F9FA)) // Light background
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(40.dp))
+
+        Text(
+            text = "Create an Account",
+            color = Color(0xFF2E7D32),
+        )
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        // First + Last Name Row
         Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
                 value = firstName,
-                onValueChange = {
-                    firstName = it
-                },
-                placeholder = {
-                    Text("Firstname")
-                },
-                modifier = Modifier.weight(1f)
+                onValueChange = { firstName = it },
+                placeholder = { Text("First Name") },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 5.dp),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
             )
-            Spacer(modifier = Modifier.width(10.dp))
             OutlinedTextField(
                 value = lastname,
-                onValueChange = {
-                    lastname = it
-                },
-                placeholder = {
-                    Text("Lastname")
-                },
-                modifier = Modifier.weight(1f)
+                onValueChange = { lastname = it },
+                placeholder = { Text("Last Name") },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 5.dp),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
             )
         }
+
         Spacer(modifier = Modifier.height(20.dp))
+
         OutlinedTextField(
             value = email,
-            onValueChange = {
-                email = it
-            },
-            placeholder = {
-                Text("abc@gmail.com")
-            },
-            modifier = Modifier.fillMaxWidth()
+            onValueChange = { email = it },
+            placeholder = { Text("Email (e.g. abc@gmail.com)") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
+
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
                 value = selectedOptionText,
@@ -137,22 +142,22 @@ fun RegBody(innerPaddingValues: PaddingValues) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .onGloballyPositioned { coordinates ->
-                        // capture the size of the TextField
                         textFieldSize = coordinates.size.toSize()
                     }
                     .clickable { expanded = true },
                 placeholder = { Text("Select Country") },
-                enabled = false, // prevent manual typing
-                colors = TextFieldDefaults.colors(
-                    disabledIndicatorColor = Color.Gray,
-                    disabledContainerColor = Color.White,
-                ),
+                enabled = false,
                 trailingIcon = {
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = null
                     )
-                }
+                },
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+                colors = TextFieldDefaults.colors(
+                    disabledContainerColor = Color.White,
+                    disabledIndicatorColor = Color.Gray
+                )
             )
 
             DropdownMenu(
@@ -174,49 +179,49 @@ fun RegBody(innerPaddingValues: PaddingValues) {
         }
 
         Spacer(modifier = Modifier.height(20.dp))
+
         OutlinedTextField(
             value = password,
-            onValueChange = {
-                password = it
-            },
-            placeholder = {
-                Text("*******")
-            },
-            modifier = Modifier.fillMaxWidth()
+            onValueChange = { password = it },
+            placeholder = { Text("Password") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
         )
-        Spacer(modifier = Modifier.height(20.dp))
+
+        Spacer(modifier = Modifier.height(30.dp))
 
         Button(
             onClick = {
                 userViewModel.register(email, password) { success, message, userId ->
                     if (success) {
-                        var userModel = UserModule(
+                        val userModel = UserModule(
                             userId, email, firstName, lastname,
                             "Male", "9841994110", selectedOptionText
                         )
-                        userViewModel.addUserToDatabase(userId,userModel){
-                                success,message->
-                            if(success){
-                                Toast.makeText(context,message, Toast.LENGTH_LONG).show()
-                            }else{
-                                Toast.makeText(context,message, Toast.LENGTH_LONG).show()
-                            }
+                        userViewModel.addUserToDatabase(userId, userModel) { success2, msg2 ->
+                            Toast.makeText(context, msg2, Toast.LENGTH_LONG).show()
                         }
                     } else {
-                        Toast.makeText(context,message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
                     }
                 }
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(55.dp),
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(14.dp)
         ) {
-            Text("Register")
+            Text(text = "Register", fontSize = 18.sp)
         }
 
-    }
-}
+        Spacer(modifier = Modifier.height(16.dp))
 
-@Preview
-@Composable
-fun RegPreview() {
-    RegBody(innerPaddingValues = PaddingValues(0.dp))
+        Text(
+            text = "Already have an account? Login",
+            modifier = Modifier.clickable {
+                activity?.finish() // You can also navigate to login
+            },
+            color = Color(0xFF2E7D32)
+        )
+    }
 }
