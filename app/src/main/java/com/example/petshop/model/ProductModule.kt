@@ -5,6 +5,7 @@ data class ProductModule(
     var productCategory: String ="",
     var price: Double = 0.0,
     var productDescription: String ="",
+    var img: String ="",
 
 
     )

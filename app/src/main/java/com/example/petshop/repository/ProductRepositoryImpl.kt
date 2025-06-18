@@ -2,6 +2,9 @@ package com.example.petshop.repository
 
 
 
+import android.content.Context
+import android.net.Uri
+import com.cloudinary.Cloudinary
 import com.example.petshop.model.ProductModule
 import com.example.petshop.repository.ProductRepository
 import com.google.firebase.database.DataSnapshot
@@ -12,6 +15,13 @@ import com.google.firebase.database.ValueEventListener
 class ProductRepositoryImpl : ProductRepository {
     val database = FirebaseDatabase.getInstance()
     val ref = database.reference.child("products")
+    private val cloudinary = Cloudinary(
+        mapOf(
+            "cloud_name" to "dahidci6o",
+            "api_key" to "158758959194845",
+            "api_secret" to "Oo50NMS-vrURt3gETED4ibe21uo"
+        )
+    )
 
     override fun addProduct(
         model: ProductModule,
@@ -102,5 +112,13 @@ class ProductRepositoryImpl : ProductRepository {
             }
 
         })
+    }
+
+    override fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFileNameFromUri(context: Context, uri: Uri): String? {
+        TODO("Not yet implemented")
     }
 }

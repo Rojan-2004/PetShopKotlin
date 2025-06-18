@@ -1,5 +1,7 @@
 package com.example.petshop.repository
 
+import android.content.Context
+import android.net.Uri
 import com.example.petshop.model.ProductModule
 
 
@@ -32,4 +34,7 @@ interface ProductRepository {
 
     fun getAllProduct(callback: (Boolean, String,
                                  List<ProductModule?>) -> Unit)
+    fun uploadImage(context: Context,imageUri: Uri, callback: (String?) -> Unit)
+
+    fun getFileNameFromUri(context: Context,uri: Uri): String?
 }
