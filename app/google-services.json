@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1066617262623",
+    "firebase_url": "https://kotlin-462ed-default-rtdb.firebaseio.com",
+    "project_id": "kotlin-462ed",
+    "storage_bucket": "kotlin-462ed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066617262623:android:03b7698b4985e7841cbb2a",
+        "android_client_info": {
+          "package_name": "com.example.petshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHi3AEeR-suQXp0szqOLh4dTrpsMeDLVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

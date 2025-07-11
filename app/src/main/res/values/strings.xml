@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Petshop</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_forget_password">ForgetPasswordActivity</string>
+    <string name="title_activity_dashboard_avtivity">DashboardAvtivity</string>
+    <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="title_activity_update_product">UpdateProductActivity</string>
+</resources>
