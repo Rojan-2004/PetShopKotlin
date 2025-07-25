@@ -6,4 +6,6 @@
     <string name="title_activity_dashboard_avtivity">DashboardAvtivity</string>
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_update_product">UpdateProductActivity</string>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_wishlist">WishlistActivity</string>
 </resources>
