@@ -1,4 +1,7 @@
 package com.example.petshop.model
 
-class WishlistModel {
-}
+data class WishlistItemModel(
+    val productName: String,
+    val productPrice: Double,
+    val image: String
+)
