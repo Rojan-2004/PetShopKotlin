@@ -3,7 +3,7 @@ package com.example.petshop.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.petshop.model.UserModule
+import com.example.petshop.model.UserModel
 import com.example.petshop.repository.UserRepository
 import com.google.firebase.auth.FirebaseUser
 
@@ -27,9 +27,9 @@ class UserViewModel(val repo:UserRepository) :ViewModel(){
         return repo.getCurrentUser()
     }
 
-    private val _users = MutableLiveData<UserModule?>()
+    private val _users = MutableLiveData<UserModel?>()
 
-    val users: LiveData<UserModule?> get() = _users
+    val users: LiveData<UserModel?> get() = _users
 
     fun getUserById(
         userId: String,
@@ -44,7 +44,7 @@ class UserViewModel(val repo:UserRepository) :ViewModel(){
 
 
     //dataBase Function
-    fun addUserToDatabase(userId:String, model: UserModule, callback: (Boolean, String) -> Unit){
+    fun addUserToDatabase(userId:String, model: UserModel, callback: (Boolean, String) -> Unit){
         repo.addUserToDatabase(userId,model,callback)
     }
     fun logout(callback: (Boolean, String) -> Unit){
