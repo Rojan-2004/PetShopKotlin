@@ -108,7 +108,7 @@ fun LoginBody() {
             Spacer(modifier = Modifier.height(60.dp))
 
             Image(
-                painter = painterResource(id = R.drawable.baseline_person_24),
+                painter = painterResource(id = R.drawable.ic_launcher_round),
                 contentDescription = null,
                 modifier = Modifier
                     .height(100.dp)
