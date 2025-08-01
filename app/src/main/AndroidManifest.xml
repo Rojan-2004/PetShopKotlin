@@ -17,6 +17,17 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+            android:name=".view.AddressActivity"
+            android:exported="true"
+            android:label="@string/title_activity_address"
+            android:theme="@style/Theme.Petshop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.UserOrderActivity"
             android:exported="true"
             android:label="@string/title_activity_user_order"
