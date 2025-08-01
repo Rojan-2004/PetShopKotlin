@@ -41,11 +41,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
-import com.example.petshop.model.UserModule
+import com.example.petshop.model.UserModel
 import com.example.petshop.repository.UserRepositoryImpl
 import com.example.petshop.viewmodel.UserViewModel
 
@@ -194,7 +193,7 @@ fun RegBody(innerPaddingValues: PaddingValues) {
             onClick = {
                 userViewModel.register(email, password) { success, message, userId ->
                     if (success) {
-                        val userModel = UserModule(
+                        val userModel = UserModel(
                             userId, email, firstName, lastname,
                             "Male", "9841994110", selectedOptionText
                         )
