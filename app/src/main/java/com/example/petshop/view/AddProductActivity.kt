@@ -12,7 +12,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,11 +35,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
-import com.cloudinary.Url
 import com.example.petshop.R
-import com.example.petshop.model.ProductModule
+import com.example.petshop.model.ProductModel
 import com.example.petshop.repository.ProductRepositoryImpl
 import com.example.petshop.utils.ImageUtils
 import com.example.petshop.viewmodel.ProductViewModel
@@ -149,7 +146,7 @@ fun AddProductBody(selectedImageUri: Uri?,
                         if (selectedImageUri != null) {
                             viewModel.uploadImage(context, selectedImageUri) { imageUrl ->
                                 if (imageUrl != null) {
-                                    val model = ProductModule(
+                                    val model = ProductModel(
                                         "",
                                         pName,
                                         pPrice.toDouble(),
