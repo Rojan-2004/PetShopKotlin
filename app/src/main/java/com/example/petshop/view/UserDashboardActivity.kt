@@ -1,6 +1,6 @@
 package com.example.petshop.view
 
-import OrderViewModel
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -29,10 +29,9 @@ import androidx.lifecycle.ViewModelProvider
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.example.petshop.LoginActivity
 import com.example.petshop.R
 import com.example.petshop.model.CartItemModel
-import com.example.petshop.model.ProductModule
+import com.example.petshop.model.ProductModel
 import com.example.petshop.model.WishlistItemModel
 import com.example.petshop.repository.*
 import com.example.petshop.viewmodel.*
@@ -49,7 +48,7 @@ class UserDashboardActivity : ComponentActivity() {
 
         cartViewModel = ViewModelProvider(this, CartViewModelFactory(CartRepositoryImpl()))[CartViewModel::class.java]
         wishlistViewModel = ViewModelProvider(this, WishlistViewModelFactory(WishlistRepositoryImpl))[WishlistViewModel::class.java]
-        userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepositoryImplementation()))[UserViewModel::class.java]
+        userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepositoryImpl()))[UserViewModel::class.java]
         orderViewModel = ViewModelProvider(this, OrderViewModelFactory(OrderRepositoryImpl()))[OrderViewModel::class.java]
 
         setContent {
@@ -104,7 +103,7 @@ fun UserDashboardBody(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("RetroCrugSports") },
+                title = { Text("PetShop") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF4CAF50), // Green top bar
                     titleContentColor = Color.White
@@ -188,7 +187,7 @@ fun UserDashboardBody(
                         .padding(horizontal = 12.dp, vertical = 4.dp)
                 )
 
-                val categories = listOf("All", "Cricket", "Football", "Rugby", "Tennis")
+                val categories = listOf("All", "Dog", "Cat", "Accessories")
 
                 LazyRow(
                     modifier = Modifier
@@ -258,7 +257,7 @@ fun UserDashboardBody(
 }
 
 @Composable
-fun UserHeader(user: com.example.petshop.model.UserModule?) {
+fun UserHeader(user: com.example.petshop.model.UserModel?) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(12.dp)
@@ -299,7 +298,7 @@ fun UserHeader(user: com.example.petshop.model.UserModule?) {
 
 @Composable
 fun ProductCard(
-    product: ProductModule,
+    product: ProductModel,
     cartViewModel: CartViewModel,
     wishlistViewModel: WishlistViewModel,
     context: android.content.Context
