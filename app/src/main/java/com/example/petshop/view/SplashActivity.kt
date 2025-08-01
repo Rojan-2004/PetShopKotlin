@@ -52,7 +52,7 @@ fun SplashBody() {
         contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.retrocruglogo),
+            painter = painterResource(id = R.drawable.petshopicon),
             contentDescription = "RetroCrug Logo",
             modifier = Modifier
                 .width(300.dp)
