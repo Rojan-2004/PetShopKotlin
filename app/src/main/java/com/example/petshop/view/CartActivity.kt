@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import coil.compose.rememberAsyncImagePainter
+import com.example.petshop.R
 import com.example.petshop.model.CartItemModel
 import com.example.petshop.model.OrderModel
 import com.example.petshop.repository.CartRepositoryImpl
@@ -92,10 +93,11 @@ fun CartScreen(cartViewModel: CartViewModel, orderViewModel: OrderViewModel) {
                 ),
                 navigationIcon = {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_pet_paw), // Add a paw icon
+                        painter = painterResource(id = com.example.petshop.R.drawable.petpaw), // Changed from 'logo' to standard pet icon
                         contentDescription = "Pet Store",
                         modifier = Modifier.padding(start = 12.dp)
                     )
+
                 }
             )
         },
@@ -120,7 +122,7 @@ fun CartScreen(cartViewModel: CartViewModel, orderViewModel: OrderViewModel) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_empty_cart), // Add pet-themed empty cart icon
+                            painter = painterResource(id = R.drawable.petcart), // Add pet-themed empty cart icon
                             contentDescription = "Empty Cart",
                             tint = Color(0xFF8D6E63),
                             modifier = Modifier.size(80.dp)
@@ -135,7 +137,7 @@ fun CartScreen(cartViewModel: CartViewModel, orderViewModel: OrderViewModel) {
                             text = "Add some treats or toys for your furry friend!",
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color(0xFF5D4037))
-                        )
+
                     }
                 } else {
                     LazyColumn(
@@ -260,7 +262,7 @@ fun PetCartItemCard(  // Renamed and modified for pet theme
                             contentColor = Color.White
                         )
                     ) {
-                        Icon(Icons.Default.Remove, contentDescription = "Decrease")
+                        Icon(Icons.Default.Delete, contentDescription = "Decrease")
                     }
                     Text(
                         text = "${item.quantity}",
