@@ -1,5 +1,9 @@
 package com.example.petshop.repository
 
+import com.example.petshop.model.AddressModel
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
+
 class AddressRepositoryImpl : AddressRepository {
     private val db = FirebaseFirestore.getInstance()
     private val collection = db.collection("addresses")

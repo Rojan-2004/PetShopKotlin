@@ -1,13 +1,12 @@
 package com.example.petshop.repository
 
 
-import com.example.petshop.model.UserModule
+import com.example.petshop.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.Exclude
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
@@ -77,11 +76,11 @@ class UserRepositoryImpl:UserRepository {
         return auth.currentUser
     }
 
-    override fun getUserById(userId: String, callback: (UserModule?, Boolean, String) -> Unit) {
+    override fun getUserById(userId: String, callback: (UserModel?, Boolean, String) -> Unit) {
         ref.child(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    val users = snapshot.getValue(UserModule::class.java)
+                    val users = snapshot.getValue(UserModel::class.java)
                     if (users != null) {
                         callback(users, true, "data fetched")
 
@@ -98,7 +97,7 @@ class UserRepositoryImpl:UserRepository {
 
     override fun addUserToDatabase(
         userId: String,
-        model: UserModule,
+        model: UserModel,
         callback: (Boolean, String) -> Unit
     ) {
         ref.child(userId).setValue(model).addOnCompleteListener {

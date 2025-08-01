@@ -1,7 +1,6 @@
 package com.example.petshop.repository
 
-import android.provider.ContactsContract.CommonDataKinds.Email
-import com.example.petshop.model.UserModule
+import com.example.petshop.model.UserModel
 import com.google.firebase.auth.FirebaseUser
 
 interface UserRepository {
@@ -23,9 +22,9 @@ interface UserRepository {
     fun getCurrentUser() :FirebaseUser?
     fun updateProfile(userId: String, data: MutableMap<String,Any?>,
                       callback :(Boolean,String)->Unit)
-    fun addUserToDatabase(userId:String, mode: UserModule,
+    fun addUserToDatabase(userId:String, mode: UserModel,
                           callback: (Boolean, String) -> Unit)
     fun logout(callback: (Boolean, String) -> Unit)
 
-    fun getUserById(userId: String, callback: (UserModule?, Boolean, String) -> Unit)
+    fun getUserById(userId: String, callback: (UserModel?, Boolean, String) -> Unit)
 }
